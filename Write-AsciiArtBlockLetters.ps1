@@ -27,7 +27,6 @@ function Write-AsciiArtBlockLetters
             Write-Host $_ -ForegroundColor Green -NoNewline
         })
         $low = $top
-        $left = $left + (@($block_letter.Split("`n") | sort Length -Descending)[0].Length + 1)
         for($i = 0; $i -lt $block_letters.Count; $i++)
         {
             $block_letter = $block_letters[$i]
@@ -38,15 +37,7 @@ function Write-AsciiArtBlockLetters
                 $main_top = $top + 7
                 $top = $main_top
             }
-            try {
-                [console]::SetCursorPosition($left,$top)
-            }
-            catch {
-                $main_top = $top + 7
-                $top = $main_top
-                $left = 0
-                [console]::SetCursorPosition($left,$top)
-            }
+            [console]::SetCursorPosition($left,$top)
             $block_letter.Split("`n").ForEach({
                 $top = $top + 1
                 [console]::SetCursorPosition($left,$top)
