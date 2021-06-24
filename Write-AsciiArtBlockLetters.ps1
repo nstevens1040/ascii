@@ -29,6 +29,12 @@ function Write-AsciiArtBlockLetters
         {
             $block_letter = $block_letters[$i]
             $top = $main_top
+            if($left -ge [console]::BufferWidth)
+            {
+                $main_top = $top + 7
+                $top = $main_top
+                $left = 0
+            }
             try {
                 [console]::SetCursorPosition($left,$top)
             }
