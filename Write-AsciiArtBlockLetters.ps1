@@ -31,10 +31,10 @@ function Write-AsciiArtBlockLetters
         {
             $block_letter = $block_letters[$i]
             $top = $main_top
-            if($left -ge [console]::BufferWidth)
+            if(($left + (@($block_letter.Split("`n") | sort Length -Descending)[0].Length + 1)) -ge [console]::BufferWidth)
             {
                 $left = 0
-                $main_top = $top + 7
+                $main_top = $low + 2
                 $top = $main_top
             }
             [console]::SetCursorPosition($left,$top)
